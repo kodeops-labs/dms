@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-12-22 18:11:05.595701",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "business_partner_section",
+  "partner_name",
+  "partner_code"
+ ],
+ "fields": [
+  {
+   "fieldname": "business_partner_section",
+   "fieldtype": "Section Break",
+   "label": "Business Partner"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "partner_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Partner Name",
+   "reqd": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "partner_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Partner Code",
+   "length": 3,
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-12-22 18:12:32.014948",
+ "modified_by": "Administrator",
+ "module": "Document Management System",
+ "name": "Business Partner",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
