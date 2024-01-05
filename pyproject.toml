@@ -1,20 +1,18 @@
 [project]
 name = "dms"
 authors = [
-    { name = "karim kohel & mohamed osama", email = "kareemkohel@gmail.com"}
+    { name = "karim kohel", email = "kareemkohel@gmail.com"},
+    { name = "mohamed osama", email = "moandosama1167@gmail.com"},
 ]
 description = "application for managing documents and templates"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
 dependencies = [
-    # "frappe~=15.0.0" # Installed and managed by bench.
+    "PyPDF2==3.0.1",
+    "reportlab==4.0.8",
 ]
 
 [build-system]
 requires = ["flit_core >=3.4,<4"]
 build-backend = "flit_core.buildapi"
-
-# These dependencies are only installed when developer mode is enabled
-[tool.bench.dev-dependencies]
-# package_name = "~=1.1.0"
