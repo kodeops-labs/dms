@@ -1,15 +1,17 @@
 {
  "actions": [],
- "autoname": "autoincrement",
+ "autoname": "field:name1",
  "creation": "2023-12-22 02:17:31.425091",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_idhh",
   "name1",
+  "template_type",
   "file",
   "created_by",
-  "datetime"
+  "datetime",
+  "code"
  ],
  "fields": [
   {
@@ -20,14 +22,13 @@
   {
    "fieldname": "name1",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Name",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "file",
    "fieldtype": "Attach",
-   "in_list_view": 1,
    "label": "File",
    "reqd": 1
   },
@@ -41,17 +42,35 @@
   {
    "fieldname": "datetime",
    "fieldtype": "Datetime",
+   "in_list_view": 1,
    "label": "DateTime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "template_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Type",
+   "options": "Types",
+   "reqd": 1
+  },
+  {
+   "fieldname": "code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Template Code",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-22 02:25:50.995747",
+ "modified": "2024-01-08 12:23:10.784991",
  "modified_by": "Administrator",
  "module": "Document Management System",
  "name": "templates",
- "naming_rule": "Autoincrement",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

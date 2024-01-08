@@ -17,5 +17,5 @@ class templates(Document):
 		self.created_by = frappe.session.user
 		self.datetime = frappe.utils.now()
 
-		templateTypeCode = frappe.db.get_value('Types', self.custom_type, 'type_code')
-		self.custom_template_code = make_autoname(templateTypeCode + '.#####')
+		templateTypeCode = frappe.db.get_value('Types', self.template_type, 'type_code')
+		self.code = make_autoname(templateTypeCode + '.#####')

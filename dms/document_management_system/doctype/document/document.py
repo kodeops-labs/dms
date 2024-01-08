@@ -39,7 +39,7 @@ def imprint_on_pdf(fileName: str, docCode: str, docProtocol: str) -> None:
 	# writing the left hand code 
 	can.drawString(10, -10, docCode)
 	# writing the right hand code
-	can.drawString(10, -(int(pdfWidth)-2), docProtocol)
+	can.drawString(10, -(int(pdfWidth)-2), docProtocol) # TODO: solve the document protocol not printing
 	can.save()
 	packet.seek(0)
 	new_pdf = PdfReader(packet)
@@ -54,8 +54,8 @@ def imprint_on_pdf(fileName: str, docCode: str, docProtocol: str) -> None:
 	output.write(output_stream)
 	output_stream.close()
 
-def assign_protocol(doc: Document) -> str:
-	docBusinessPartner = frappe.db.get_value('Business Partner', doc.custom_business_partner, 'partner_code')
+def assign_protocol(doc: Document) -> str: # TODO: This would probably fail if the same user produces the same document in the same day
+	docBusinessPartner = frappe.db.get_value('Business Partner', doc.document_business_partner, 'partner_code')
 	date = datetime.today().strftime('%y%m%d')
 	userInitials = frappe.session.user[:3]
 
@@ -70,14 +70,11 @@ class Document(Document):
 			frappe.throw("Allowed file types are: MS Word docx or PDF only")
 
 		self.created_by = frappe.session.user
-		self.custom_datetime = frappe.utils.now()
+		self.datetime = frappe.utils.now()
 
-		self.custom_protocol_number = assign_protocol(self)
+		self.protocol_number = assign_protocol(self)
 
 	def before_submit(self):
-		self.custom_protocol_number = assign_protocol(self)
-		templateUsedCode = frappe.db.get_value('templates', self.custom_template_used, 'custom_template_code')
-		print("::::::::::::::::::::::::::::::::::::::::::::::::::::::::",templateUsedCode)
+		templateUsedCode = frappe.db.get_value('templates', self.document_template_used, 'code')
 
-		imprint_on_pdf(self.file, templateUsedCode, self.custom_protocol_number)
-
+		imprint_on_pdf(self.file, templateUsedCode, self.protocol_number)

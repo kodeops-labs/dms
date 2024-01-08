@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:partner_name",
  "creation": "2023-12-22 18:11:05.595701",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -19,9 +20,9 @@
    "allow_in_quick_entry": 1,
    "fieldname": "partner_name",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Partner Name",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "allow_in_quick_entry": 1,
@@ -35,10 +36,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-22 18:12:32.014948",
+ "modified": "2024-01-08 12:26:06.564591",
  "modified_by": "Administrator",
  "module": "Document Management System",
  "name": "Business Partner",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

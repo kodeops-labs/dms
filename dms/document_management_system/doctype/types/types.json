@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:type_name",
  "creation": "2023-12-22 16:39:20.838736",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -19,9 +20,9 @@
    "allow_in_quick_entry": 1,
    "fieldname": "type_name",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Type Name",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "allow_in_quick_entry": 1,
@@ -35,10 +36,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-22 16:48:25.349847",
+ "modified": "2024-01-08 11:52:48.160951",
  "modified_by": "Administrator",
  "module": "Document Management System",
  "name": "Types",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
