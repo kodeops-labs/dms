@@ -34,12 +34,12 @@ def imprint_on_pdf(fileName: str, docCode: str, docProtocol: str) -> None:
 
 
 	packet = BytesIO()
-	can = canvas.Canvas(packet, pagesize=A4)
+	can = canvas.Canvas(packet, pagesize=(pdfWidth, pdfHight))
 	can.rotate(90)
 	# writing the left hand code 
 	can.drawString(10, -10, docCode)
 	# writing the right hand code
-	can.drawString(10, -(int(pdfWidth)-2), docProtocol) # TODO: solve the document protocol not printing
+	can.drawString(10, -(pdfWidth-3), docProtocol)
 	can.save()
 	packet.seek(0)
 	new_pdf = PdfReader(packet)
