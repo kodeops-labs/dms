@@ -10,17 +10,6 @@ from reportlab.lib.pagesizes import A4
 from frappe.model.naming import make_autoname
 from datetime import datetime
 
-# DEPRECATED
-# import aspose.words as aw
-# def convert_to_PDF(fileName: str) -> None:
-# 	"""Fucntion that converts a word file to pdf by reading the file from storage, convert and then save it back in the same place
-# 	"""
-# 	docxFilePath: str = frappe.local.site+"/"+fileName
-# 	fileName: str = docxFilePath.rsplit('.', 1)[0] # split the name at the last "." and give the first half
-# 	document = aw.Document(docxFilePath)
-# 	document.save(f"{fileName}.pdf")
-# 	os.remove(docxFilePath)
-
 def imprint_on_pdf(fileName: str, docCode: str, docProtocol: str) -> None:
 	"""A function that imprints the information needed on the document after submission
 	- the function only works on vertical pages and still needs updating to work on horizontal pages
@@ -31,6 +20,7 @@ def imprint_on_pdf(fileName: str, docCode: str, docProtocol: str) -> None:
 	existing_pdf = PdfReader(open(pdfFilePath, "rb"))
 	singePage = existing_pdf._get_page(0)
 	pdfWidth, pdfHight = singePage.mediabox.upper_right
+	pdfWidth, pdfHight = int(pdfWidth), int(pdfHight)
 
 
 	packet = BytesIO()
@@ -54,7 +44,7 @@ def imprint_on_pdf(fileName: str, docCode: str, docProtocol: str) -> None:
 	output.write(output_stream)
 	output_stream.close()
 
-def assign_protocol(doc: Document) -> str: # TODO: This would probably fail if the same user produces the same document in the same day
+def assign_protocol(doc: Document) -> str:
 	docBusinessPartner = frappe.db.get_value('Business Partner', doc.document_business_partner, 'partner_code')
 	date = datetime.today().strftime('%y%m%d')
 	userInitials = frappe.session.user[:3]
