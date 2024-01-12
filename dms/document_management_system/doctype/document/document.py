@@ -23,6 +23,7 @@ def imprint_on_pdf(fileName: str, docCode: str, docProtocol: str) -> None:
 	pdfWidth, pdfHight = int(pdfWidth), int(pdfHight)
 
 
+
 	packet = BytesIO()
 	can = canvas.Canvas(packet, pagesize=(pdfWidth, pdfHight))
 	can.rotate(90)
@@ -55,7 +56,7 @@ class Document(Document):
 
 	def before_save(self):
 
-		if "pdf" not in self.file:
+		if self.file[-3:] != 'pdf':
 			os.remove(frappe.local.site+"/"+self.file)
 			frappe.throw("Allowed file types are: MS Word docx or PDF only")
 
