@@ -10,7 +10,7 @@ from frappe.model.naming import make_autoname
 class templates(Document):
 	
 	def before_save(self):
-		if "docx" not in self.file:
+		if (self.file[-4:] != "docx") and (self.file[-3:] != 'doc'):
 			os.remove(frappe.local.site+"/"+self.file)
 			frappe.throw("Allowed file types are: MS Word docx files only")
 
